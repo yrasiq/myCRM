@@ -1,0 +1,148 @@
+{% extends 'index.html' %}
+    {% load static %}
+    {% load mainapptemplatetags %}
+    {% block title %}
+        {{ title }}
+    {% endblock %}
+    {% block css %}
+        <link href="{% static 'mainapp/css/table.css' %}" rel="stylesheet" >
+        <link href="{% static 'mainapp/css/machines.css' %}" rel="stylesheet">
+        <style>
+            aside svg#machines{
+                fill: #dee2e6;
+            }
+        </style>
+    {% endblock %}
+    {% block contantname %}
+        {{ title }}
+    {% endblock %}
+    {% block main %}
+    <div class="head">
+        <input class="form-control me-2 search global-search" type="search" placeholder="{% if cache.search.search %}{{ cache.search.search }}{% else %}Поиск{% endif %}" aria-label="Search" value="{{ cache.search.search }}">
+        <button type="button" class="btn btn-success new" href="new/">Создать</button>
+        <nav aria-label="Page navigation example" class="itertable">
+            <ul class="pagination list-itertable">
+                {% for i, j in pagination_list %}
+                    {% if i == 'active' %}
+                    <li class="page-item"><a class="page-link active-page" value="{{ j }}">{{ j }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?request_type=pagination&page={{ j }}" value="{{ j }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    <div class="thead-background">
+    </div>
+    <div class='head-shadow'>
+    </div>
+    <div class="table-wrapper">
+        <table class='table table-hover workshifts'>
+            <thead>
+                <tr>
+                    {% for key, value in output_title.items %}
+                        <th class="workshifts">
+                            <a data-toggle="dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" name="{{ key }}" {% if cache.filters|keyvalue:key or cache.ranges|keyvalue:key %} style="color: black; font-weight: 500;" {% endif %}>
+                                <div>
+                                    <div class="sort-arrow sort_up">
+                                        {% if cache.sort|keyvalue:key == 'sort_up' %}▲{% endif %}
+                                    </div>
+                                    <div class="th-text">
+                                        {{ value }}
+                                    </div>
+                                    <div class="sort-arrow sort_down">
+                                        {% if cache.sort|keyvalue:key == 'sort_down' %}▼{% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item sort" href="?request_type=sort&{{ key }}=sort_up" value="sort_up">
+                                        Сортировка Я ⟶ А
+                                        <div>
+                                            {% if cache.sort|keyvalue:key == 'sort_up' %}✓{% endif %}
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item sort" href="?request_type=sort&{{ key }}=sort_down" value="sort_down">
+                                        Сортировка А ⟶ Я
+                                        <div>
+                                            {% if cache.sort|keyvalue:key == 'sort_down' %}✓{% endif %}
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="filters">
+                                    <ul>
+                                        {% if key == 'in_work' %}
+                                        <form name="{{ key }}" class="form-filter date-range">
+                                            <li>
+                                                <input class="form-control me-2 search from" type="search" placeholder="От" aria-label="Search" autocomplete="off" name="{{ key }}" value="{{ cache.ranges.date.0 }}">
+                                                <input class="form-control me-2 search to" type="search" placeholder="До" aria-label="Search" autocomplete="off" name="{{ key }}" value="{{ cache.ranges.date.1 }}">
+                                            </li>
+                                            <li class="calendar">
+                                            </li>
+                                            <li>
+                                                <input type="submit" value="Применить" class="btn btn-primary btn-sm">
+                                                <input type="button" value="Сброс" class="btn btn-primary btn-sm">
+                                            </li>
+                                        </form>
+                                        {% else %}
+                                        <form name="{{ key }}" class="form-filter checkbox-filter">
+                                            <li>
+                                                <ul>
+                                                    <li>Фильтр</li>
+                                                    <li><a href="#" class="multi_choose" value="all">Все</a></li>
+                                                    <li><a href="#" class="multi_choose" value="nothing">Сброс</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Search">
+                                            </li>
+                                            <li>
+                                                <ul class="filter-list">
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <input type="submit" value="Удалить" class="btn btn-primary btn-sm">
+                                            </li>
+                                        </form>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody class="workshifts">
+                {% for i in output %}
+                    <tr class="workshifts {% if i.in_work and i.in_work|date:'D M Y' > now|date:'D M Y' %}inactive{% endif %}" href="{{ i.id }}/" {% if i.changed %}changed="true"{% endif %}>
+                        {% for j in output_title %}
+                            <td class="workshifts" {% if j == 'partner' %}action="{% url 'partner' i.partner.pk %}"{% endif %} >
+                                {% if j == 'in_work' %}
+                                    {% if i.in_work and i.in_work|date:"D M Y" > now|date:"D M Y" %}
+                                        До {{ i.in_work }}
+                                    {% else %}
+                                        Свободен
+                                    {% endif %}
+                                {% elif i|getattrvalue:j == True %}
+                                    <input type="checkbox" class="form-check-input" disabled readonly checked>
+                                {% elif i|getattrvalue:j == False %}
+                                <input type="checkbox" class="form-check-input" disabled readonly>
+                                {% else %}
+                                    {{ i|getattrvalue:j }}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'mainapp/javascript/table.js' %}"></script>
+        <script src="{% static 'mainapp/javascript/machines.js' %}"></script>
+        <script src="{% static 'js/modal.js' %}"></script>
+    {% endblock %}

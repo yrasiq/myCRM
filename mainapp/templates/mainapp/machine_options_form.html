@@ -1,0 +1,29 @@
+{% load mainapptemplatetags %}
+<style>
+    #machine_options_form input{
+        width: 10rem;
+        display: inline-block;
+    }
+    #machine_options_form input:nth-child(2n){
+        margin-left: 1rem;
+    }
+</style>
+<form method="post" id="machine_options_form">
+    {% csrf_token %}
+    <table>
+        <tbody>
+            <tr>
+                <th><h6>Доп</h6></th>
+                <td>{{ form.non_field_errors }}</td>
+            </tr>
+            {% for field in form %}
+            {% if forloop.counter0|remdivision:2 == 0 %}
+            <tr>
+                <th>{{ field.label_tag }}</th>
+                <td>{{ field }}{{ form|field_by_number:forloop.counter|escape }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</form>

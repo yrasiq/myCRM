@@ -1,0 +1,141 @@
+{% load static %}
+
+<link href="{% static 'mainapp/css/partner.css' %}" rel="stylesheet">
+
+<div class="modal-header">
+    <h5>{{ output.name }}</h5>
+</div>
+<div class="modal-body">
+    <div class="info">
+        <h6>Данные</h6>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Название:</th>
+                    <td>{{ output.name }}</td>
+                </tr>
+                <tr>
+                    <th>Менеджер:</th>
+                    <td>{{ output.manager|default_if_none:'Не назначен' }}</td>
+                </tr>
+                <tr>
+                    <th>Телефон:</th>
+                    <td>{% if output.phone %}+7{{ output.phone }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Почта:</th>
+                    <td>{{ output.email }}</td>
+                </tr>
+                <tr>
+                    <th>Адрес:</th>
+                    <td>{{ output.adres }}</td>
+                </tr>
+                <tr>
+                    <th>Почтовый адрес:</th>
+                    <td>{{ output.mail_adres }}</td>
+            </tbody>
+        </table>
+        <h6>Сводка</h6>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Их. оборот:</th>
+                    <td>{{ output.summary.outdoing|default_if_none:'' }}</td>
+                </tr>
+                <tr>
+                    <th>Вх. оборот:</th>
+                    <td>{{ output.summary.incoming|default_if_none:'' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h6>Юр. лица</h6>
+        <table class="partner-entites">
+            <tbody>
+                <tr>
+                    <th><input placeholder="Добавить" maxlength="10" name="inn" autocomplete="off" class="create-entity" href="{% url 'entity' output.id %}"></th>
+                    <td class="entity-error"></td>
+                </tr>
+                {% for i in output.entity_set.all %}
+                <tr>
+                    <th><input value="{{ i.inn }}" maxlength="10" name="inn" autocomplete="off" class="update-entity" href="{% url 'entity_edit' i.id %}"></th>
+                    <td>{{ i.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="partner-tables">
+        <div class="upper-wrap">
+            <div class="partner-orders">
+                <h6>Заказы</h6>
+                <table>
+                    <thead>
+                        <th>№</th>
+                        <th>Тех.</th>
+                        <th>Статус</th>
+                        <th>Роль</th>
+                        <th>Дата</th>
+                    </thead>
+                    <tbody>
+                    {% for i in output.orders %}
+                        <tr>
+                            <td>{{ i.id }}</td>
+                            <td>{{ i.machine_type.name }}</td>
+                            <td>{{ i.status }}</td>
+                            <td>{{ i.role }}</td>
+                            <td>{{ i.start_date|date:'d.m.Y' }} - {{ i.end_date|date:'d.m.Y' }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="partner-machines">
+                <h6>Техника</h6>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Тип</th>
+                            <th>Кол-во</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for type in output.machines %}
+                            {% if type.count > 0 %}
+                            <tr>
+                                <td>{{ type.model }}</td>
+                                <td>{{ type.count }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="partner-contacts">
+            <h6>Контакты</h6>
+            <table>
+                <thead>
+                    <th>Имя</th>
+                    <th>Должность</th>
+                    <th>Телефон</th>
+                    <th>e-mail</th>
+                </thead>
+                <tbody>
+                    {% for i in output.person_set.all %}
+                    <tr>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.position }}</td>
+                        <td>{% if i.phone %}+7{{ i.phone }}{% endif %}</td>
+                        <td>{{ i.email }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" name="edit" class="btn btn-warning" href="{% url 'partners_edit' output.id %}">Изменить</button>
+</div>
+
+<script src="{% static 'mainapp/javascript/partner.js' %}"></script>

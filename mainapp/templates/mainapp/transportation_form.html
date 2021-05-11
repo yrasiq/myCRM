@@ -1,0 +1,35 @@
+<style>
+    .transportation{
+        padding-left: 1rem;
+    }
+    .transportation h6{
+        margin-bottom: 0;
+    }
+</style>
+<div class="transportation">
+    <form method="post" id="transp_to_form">
+        {% csrf_token %}
+        <table>
+            <tbody>
+                <tr>
+                    <th><h6>Доставка</h6></th>
+                </tr>
+                {{ transp_to_form }}
+            </tbody>
+        </table>
+    </form>
+    <form method="post" id="transp_out_form">
+        {% csrf_token %}
+        <table>
+            <tbody>
+                <tr>
+                    <th><h6>Вывоз</h6></th>
+                </tr>
+                {{ transp_out_form }}
+            </tbody>
+        </table>
+    </form>
+    {% if machine_options_form %}
+        {% include 'mainapp/machine_options_form.html' with form=machine_options_form %}
+    {% endif %}
+</div>

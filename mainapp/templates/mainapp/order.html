@@ -1,0 +1,233 @@
+{% load static %}
+{% load mainapptemplatetags %}
+
+<link href="{% static 'mainapp/css/order.css' %}" rel="stylesheet">
+
+<div class="modal-header">
+    <h5>Заказ: {{ output.id }}</h5>
+    <table>
+        <tbody>
+            <tr>
+                <th>Статус:</th>
+                <td>{{ output.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-body">
+    <div class="info">
+        <h6>Данные</h6>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Менеджер:</th>
+                    <td>{{ output.manager }}</td>
+                </tr>
+                <tr>
+                    <th>Техника:</th>
+                    <td>{{ output.machine_type.name }}</td>
+                </tr>
+                <tr>
+                    <th>Заказчик:</th>
+                    <td>{{ output.customer }}</td>
+                </tr>
+                <tr>
+                    <th>Поставщик:</th>
+                    <td>{{ output.supplier }}</td>
+                </tr>
+                <tr>
+                    <th>Адрес:</th>
+                    <td>{{ output.adres }}</td>
+                </tr>
+                <tr>
+                    <th>Контакт:</th>
+                    <td>{{ output.contact }}</td>
+                </tr>
+                <tr>
+                    <th>Вх. стоимость:</th>
+                    <td>{{ output.incoming_cost|default_if_none:'Не указана' }} | {{ output.get_incoming_pay_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Их. стоимость:</th>
+                    <td>{{ output.outdoing_cost|default_if_none:'Не указана' }} | {{ output.get_outdoing_pay_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Период:</th>
+                    <td>{{ output.start_date }} - {{ output.end_date }}</td>
+                </tr>
+                {% if output.options_info %}
+                <tr>
+                    <th><h6>Доп</h6></th>
+                </tr>
+                {% for key, value in output.options_info.items %}
+                <tr>
+                    <th>
+                        {{ value.verbose_name }}:
+                    </th>
+                    <td>
+                        {{ value.incoming|to_decimal }} - {{ value.outdoing|to_decimal }}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% if output.transportation_to.first %}
+                <tr>
+                    <th><h6>Доставка</h6></th>
+                </tr>
+                <tr>
+                    <th>Перевозчик:</th>
+                    <td>{{ output.transportation_to.first.carrier|default_if_none:'Не определен' }}</td>
+                </tr>
+                <tr>
+                    <th>Вх. стоимость:</th>
+                    <td>{{ output.transportation_to.first.incoming_cost|default_if_none:'Не указана' }} | {{ output.transportation_to.first.get_incoming_pay_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Их. стоимость:</th>
+                    <td>{{ output.transportation_to.first.outdoing_cost|default_if_none:'Не указана' }} | {{ output.get_outdoing_pay_type_display }}</td>
+                </tr>
+                {% endif %}
+                {% if output.transportation_out.first %}
+                <tr>
+                    <th><h6>Вывоз</h6></th>
+                </tr>
+                <tr>
+                    <th>Перевозчик:</th>
+                    <td>{{ output.transportation_out.first.carrier|default_if_none:'Не определен' }}</td>
+                </tr>
+                <tr>
+                    <th>Вх. стоимость:</th>
+                    <td>{{ output.transportation_out.first.incoming_cost|default_if_none:'Не указана' }} | {{ output.transportation_out.first.get_incoming_pay_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Их. стоимость:</th>
+                    <td>{{ output.transportation_out.first.outdoing_cost|default_if_none:'Не указана' }} | {{ output.get_outdoing_pay_type_display }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <h6>Сводка</h6>
+        <table class="annotate">
+            <tbody>
+                <tr class="margin">
+                    <th>Маржа:</th>
+                    <td>{{ statistic.margin }}</td>
+                </tr>
+                <tr class="profit">
+                    <th>Прибыль:</th>
+                    <td>{{ statistic.delta }}</td>
+                </tr>
+                <tr class="income">
+                    <th>Доход:</th>
+                    <td>{{ statistic.convolution.0 }}</td>
+                </tr>
+                <tr class="expense">
+                    <th>Расход:</th>
+                    <td>{{ statistic.convolution.1 }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="order-workshifts">
+        <h6>Смены</h6>
+        <table>
+            <thead>
+                <th>Дата</th>
+                <th>Час</th>
+                <th>Доп</th>
+                <th>Рапорт</th>
+                <th>Вх. док</th>
+                <th>Их. док</th>
+            </thead>
+            <tbody>
+                {% if output.transportation_out.first %}
+                {% with output.transportation_out.first as transp_out %}
+                <tr>
+                    <td>{{ output.end_date }}</td>
+                    <td>---</td>
+                    <td>Выв</td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if transp_out.raport %}
+                            checked
+                        {% endif %}
+                    ></td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if transp_out.incoming_pay_type == 'НАЛ' or transp_out.incoming_pay_type == 'БНДС' and transp_out.incoming_act or transp_out.incoming_act and transp_out.incoming_invoice %}
+                            checked
+                        {% endif %}
+                    ></td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if output.outdoing_pay_type == 'НАЛ' or output.outdoing_pay_type == 'БНДС' and transp_out.outdoing_act or transp_out.outdoing_act and transp_out.outdoing_invoice %}
+                            checked
+                        {% endif %}
+                    ></td>
+                </tr>
+                {% endwith %}
+                {% endif %}
+                {% with output.options_info as options_info %}
+                {% for i in output.workshift_set.all %}
+                <tr>
+                    <td>{{ i.date }}</td>
+                    <td class="input-hours">
+                        <input type="number" value="{{ i.hours }}" name="hours" action="{% url 'order_workshifts' i.id %}">
+                    </td>
+                    <td class="select-options">
+                        <select name="options" action="{% url 'order_workshifts' i.id %}">
+                            <option {% if not i.options %}selected{% endif %} value="">---</option>
+                            {% for name, info in options_info.items %}
+                            <option {% if info.verbose_name == i.options %}selected{% endif %} value="{{ info.verbose_name }}">{{ info.verbose_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if i.raport %}
+                            checked
+                        {% endif %}
+                    ></td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if output.incoming_pay_type == 'НАЛ' or output.incoming_pay_type == 'БНДС' and i.incoming_act or i.incoming_act and i.incoming_invoice %}
+                            checked
+                        {% endif %}
+                    ></td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if output.outdoing_pay_type == 'НАЛ' or output.outdoing_pay_type == 'БНДС' and i.outdoing_act or i.outdoing_act and i.outdoing_invoice %}
+                            checked
+                        {% endif %}
+                    ></td>
+                </tr>
+                {% endfor %}
+                {% endwith %}
+                {% if output.transportation_to.first %}
+                {% with output.transportation_to.first as transp_to %}
+                <tr>
+                    <td>{{ output.start_date }}</td>
+                    <td>---</td>
+                    <td>Дос</td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if output.transportation_to.first.raport %}
+                            checked
+                        {% endif %}
+                    ></td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if transp_to.incoming_pay_type == 'НАЛ' or transp_to.incoming_pay_type == 'БНДС' and transp_to.incoming_act or transp_to.incoming_act and transp_to.incoming_invoice %}
+                            checked
+                        {% endif %}
+                    ></td>
+                    <td><input type="checkbox" class="form-check-input" disabled readonly
+                        {% if output.outdoing_pay_type == 'НАЛ' or output.outdoing_pay_type == 'БНДС' and transp_to.outdoing_act or transp_to.outdoing_act and transp_to.outdoing_invoice %}
+                            checked
+                        {% endif %}
+                    ></td>
+                </tr>
+                {% endwith %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" name="edit" class="btn btn-warning" href="{% url 'orders_edit' output.id %}">Изменить</button>
+    <button type="button" name="cancel" class="btn btn-danger" href="{% url 'orders_edit' output.id %}">Отменить</button>
+</div>
+
+<script src="{% static 'mainapp/javascript/order.js' %}"></script>

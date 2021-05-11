@@ -1,0 +1,93 @@
+{% load static %}
+{% load mainapptemplatetags %}
+
+<link href="{% static 'mainapp/css/employee.css' %}" rel="stylesheet">
+
+<div class="modal-header">
+    <h5 action="{% url 'employee' output.id %}" >{{ output.full_name }}</h5>
+        <p>Последний сеанс: <br>{{ output.last_login|date:'j.m.Y H:i' }}</p>
+    </table>
+</div>
+<div class="modal-body">
+    <div class="info">
+        <div class="user-photo">
+            {% if output.photo %}
+                <img src="{{ output.photo.url }}">
+            {% else %}
+            ?
+            {% endif %}
+        </div>
+        <table>
+            <tr>
+                <th>Должность:</th>
+                <td>{{ output.get_position_display|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <th>Телфон:</th>
+                <td>
+                    {% if output.phone %}
+                    +7{{ output.phone }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>E-mail:</th>
+                <td>{{ output.email }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="statistic">
+        {% if output.position == 'МЕН' %}
+        <div class="st-date-range">
+            <input class="form-control" placeholder="От" name="start_date" value="{{ stat_start_date|date:'d.m.Y' }}">
+            <input class="form-control" placeholder="До" name="end_date" value="{{ stat_end_date|date:'d.m.Y' }}">
+            <div class="st-calendar"></div>
+            <button class="btn btn-primary" type="submit">Применить</button>
+            <button class="btn btn-secondary" type="reset">Сбросить</button>
+        </div>
+        {% include 'mainapp/sales_statistic.html' %}
+        <script defer>
+        $('.st-calendar').dateRangePicker({
+            singleMonth: true,
+            showShortcuts: false,
+            showTopbar: false,
+            inline: true,
+            container: '.st-calendar',
+            alwaysOpen: true,
+            separator : ' to ',
+            startOfWeek: 'monday',
+            format: "DD.MM.YYYY",
+            language: 'ru',
+            hoveringTooltip: false,
+            getValue: function()
+            {
+                if ($('.st-date-range input[name="start_date"]').val() && $('.st-date-range input[name="end_date"]').val() )
+                    return $('.st-date-range input[name="start_date"]').val() + ' to ' + $('.st-date-range input[name="end_date"]').val();
+                else
+                    return '';
+            },
+            setValue: function(s,s1,s2)
+            {
+                $('.st-date-range input[name="start_date"]').val(s1);
+                $('.st-date-range input[name="end_date"]').val(s2);
+            }
+        });
+        $('.st-date-range button').on('click', function(e){
+            data = null;
+            url = $('.modal-header h5').attr('action');
+            if (e.target.type == 'submit'){
+                data = $('.st-date-range input[name="start_date"], .st-date-range input[name="end_date"]').serialize();
+            };
+            $.get(url, data, function(response){
+                $('.table-statistic').replaceWith($(response).find('.table-statistic'));
+                $('.st-calendar').data('dateRangePicker').setDateRange(
+                    $(response).find('.st-date-range input[name="start_date"]').val(),
+                    $(response).find('.st-date-range input[name="end_date"]').val()
+                    );
+                $('.table-statistic').animate({color: '#ffda6a'}, 300).animate({color: 'black'}, 300);
+            })
+        });
+        </script>
+        {% endif %}
+    </div>
+</div>

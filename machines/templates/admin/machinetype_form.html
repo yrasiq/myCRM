@@ -1,0 +1,28 @@
+<div class="header">
+    <h1>{{ title_form }}</h1>
+    {% if title_form == 'Редактировать тип' %}
+    <button class="append-button">Новый тип</button>
+    {% endif %}
+    <div class="dropdown">
+        <button class="dropdown-button">
+        Изменить ▼
+        </button>
+        <ul class="dropdown-menu">
+        {% for i in machine_types %}
+        <li><a class="dropdown-item" href="{% url 'machine_type_update' i.model %}">{{ i.name }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+<form id="machine-type-form" action="{{ href }}" method="post">
+    {% csrf_token %}
+    <table>
+        <tbody>
+            {{ form }}
+        </tbody>
+    </table>
+    <div class="submit-row">
+        <div class="message"></div>
+        <input type="submit" value="Сохранить" class="default">
+    </div>
+</form>

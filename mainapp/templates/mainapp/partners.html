@@ -1,0 +1,183 @@
+{% extends 'index.html' %}
+    {% load static %}
+    {% load mainapptemplatetags %}
+    {% block title %}
+    Контрагенты
+    {% endblock %}
+    {% block css %}
+        <link href="{% static 'mainapp/css/table.css' %}" rel="stylesheet">
+        <link href="{% static 'mainapp/css/partners.css' %}" rel="stylesheet">
+        <style>
+            aside svg#partners{
+                fill: #dee2e6;
+            }
+        </style>
+    {% endblock %}
+    {% block contantname %}
+    Контрагенты
+    {% endblock %}
+    {% block modal %}
+        <div class="modal-header">
+            <h5></h5>
+            <p></p>
+        </div>
+        <div class="modal-body">
+            <div>
+                <h6>Данные</h6>
+                <form method="post" id="main-form">
+                <table class="main-table">
+                </table>
+                </form>
+                <h6>Сводка</h6>
+                <table class="annotate-table">
+                    <tbody>
+                        <tr class='balance-now'>
+                            <th>Баланс факт:</th>
+                            <td></td>
+                        </tr>
+                        <tr class='balance-docs'>
+                            <th>Баланс док:</th>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6>Юр. лица</h6>
+                <table class="entity-table">
+                </table>
+            </div>
+            <div>
+                <div class="contacts">
+                    <h6 class="sticky">Контакты</h6>
+                    <table class="contacts-table">
+                        <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Должность</th>
+                                <th>Телефон</th>
+                                <th>e-mail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="machines">
+                    <h6 class="sticky">Техника</h6>
+                    <table class="machines-table">
+                        <thead>
+                            <tr>
+                                <th>Тип</th>
+                                <th>Хар-ка</th>
+                                <th>Доп оборудование</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    {% endblock %}
+    {% block main %}
+        <div class="head">
+            <input class="form-control me-2 search global-search" type="search" placeholder="{% if cache.search.search %}{{ cache.search.search }}{% else %}Поиск{% endif %}" aria-label="Search" value="{{ cache.search.search }}">
+            <button type="button" class="btn btn-success new" href="new/">Создать</button>
+            <nav aria-label="Page navigation example" class="itertable">
+                <ul class="pagination list-itertable">
+                    {% for i, j in pagination_list %}
+                        {% if i == 'active' %}
+                        <li class="page-item"><a class="page-link active-page" value="{{ j }}">{{ j }}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?request_type=pagination&page={{ j }}" value="{{ j }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+        <div class="thead-background">
+        </div>
+        <div class='head-shadow'>
+        </div>
+        <div class="table-wrapper">
+            <table class='table table-hover workshifts table-col3r'>
+                <thead>
+                    <tr>
+                        {% for key, value in output_title.items %}
+                            <th class="workshifts">
+                                <a data-toggle="dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" name="{{ key }}" {% if cache.filters|keyvalue:key or cache.ranges|keyvalue:key %} style="color: black; font-weight: 500;" {% endif %}>
+                                    <div>
+                                        <div class="sort-arrow sort_up">
+                                            {% if cache.sort|keyvalue:key == 'sort_up' %}▲{% endif %}
+                                        </div>
+                                        <div>
+                                            {{ value }}
+                                        </div>
+                                        <div class="sort-arrow sort_down">
+                                            {% if cache.sort|keyvalue:key == 'sort_down' %}▼{% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item sort" href="?request_type=sort&{{ key }}=sort_up" value="sort_up">
+                                            Сортировка Я ⟶ А
+                                            <div>
+                                                {% if cache.sort|keyvalue:key == 'sort_up' %}✓{% endif %}
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item sort" href="?request_type=sort&{{ key }}=sort_down" value="sort_down">
+                                            Сортировка А ⟶ Я
+                                            <div>
+                                                {% if cache.sort|keyvalue:key == 'sort_down' %}✓{% endif %}
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="filters">
+                                        <ul>
+                                            <form name="{{ key }}" class="form-filter checkbox-filter">
+                                                <li>
+                                                    <ul>
+                                                        <li>Фильтр</li>
+                                                        <li><a href="#" class="multi_choose" value="all">Все</a></li>
+                                                        <li><a href="#" class="multi_choose" value="nothing">Сброс</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Search">
+                                                </li>
+                                                <li>
+                                                    <ul class="filter-list">
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <input type="submit" value="Удалить" class="btn btn-primary btn-sm">
+                                                </li>
+                                            </form>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody class="workshifts">
+                    {% for i in output %}
+                        <tr class="workshifts" href="{{ i.id }}/" {% if i.changed %}changed="true"{% endif %}>
+                            {% for j in output_title %}
+                                <td class="workshifts">{{ i|getattrvalue:j }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'mainapp/javascript/table.js' %}"></script>
+        <script src="{% static 'mainapp/javascript/partners.js' %}"></script>
+        <script src="{% static 'js/modal.js' %}"></script>
+    {% endblock %}

@@ -1,0 +1,129 @@
+{% load static %}
+{% load mainapptemplatetags %}
+
+<link href="{% static 'mainapp/css/application.css' %}" rel="stylesheet">
+
+<div class="modal-header">
+    <h5>Заявка: {{ output.id }}</h5>
+    <table>
+        <tbody>
+            <tr>
+                <th>Статус:</th>
+                <td>{{ output.status }}</td>
+            </tr>
+            <tr>
+                <th>Создана:</th>
+                <td>{{ output.create_date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-body">
+    <div class="info">
+        <table>
+            <tbody>
+                <tr>
+                    <th>Менеджер:</th>
+                    <td>{{ output.manager }}</td>
+                </tr>
+                <tr>
+                    <th>Техника:</th>
+                    <td>{{ output.machine_type.name }}</td>
+                </tr>
+                <tr>
+                    <th>Дата начала:</th>
+                    <td>{{ output.start_date }}</td>
+                </tr>
+                <tr>
+                    <th>Время начала:</th>
+                    <td>{{ output.start_time }}</td>
+                </tr>
+                <tr>
+                    <th>Смен:</th>
+                    <td>{{ output.duration }}</td>
+                </tr>
+                <tr>
+                    <th>Адрес:</th>
+                    <td>{{ output.adres }}</td>
+                </tr>
+                <tr>
+                    <th>Заказчик:</th>
+                    <td>{{ output.customer }}</td>
+                </tr>
+                <tr>
+                    <th>Поставщик:</th>
+                    <td>{{ output.supplier|default_if_none:'' }}</td>
+                </tr>
+                <tr>
+                    <th>Вх. стоимость:</th>
+                    <td>{{ output.incoming_cost|default_if_none:'Не указана' }} | {{ output.get_incoming_pay_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Их. стоимость:</th>
+                    <td>{{ output.outdoing_cost|default_if_none:'Не указана' }} | {{ output.get_outdoing_pay_type_display }}</td>
+                </tr>
+                {% if output.options_info %}
+                <tr>
+                    <th><h6>Доп</h6></th>
+                </tr>
+                {% for key, value in output.options_info.items %}
+                <tr>
+                    <th>
+                        {{ value.verbose_name }}:
+                    </th>
+                    <td>
+                        {{ value.incoming|to_decimal }} - {{ value.outdoing|to_decimal }}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% if output.transportation_to.first %}
+                <tr>
+                    <th><h6>Доставка</h6></th>
+                </tr>
+                <tr>
+                    <th>Перевозчик:</th>
+                    <td>{{ output.transportation_to.first.carrier|default_if_none:'Не определен' }}</td>
+                </tr>
+                <tr>
+                    <th>Вх. стоимость:</th>
+                    <td>{{ output.transportation_to.first.incoming_cost|default_if_none:'Не указана' }} | {{ output.transportation_to.first.get_incoming_pay_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Их. стоимость:</th>
+                    <td>{{ output.transportation_to.first.outdoing_cost|default_if_none:'Не указана' }} | {{ output.get_outdoing_pay_type_display }}</td>
+                </tr>
+                {% endif %}
+                {% if output.transportation_out.first %}
+                <tr>
+                    <th><h6>Вывоз</h6></th>
+                </tr>
+                <tr>
+                    <th>Перевозчик:</th>
+                    <td>{{ output.transportation_out.first.carrier|default_if_none:'Не определен' }}</td>
+                </tr>
+                <tr>
+                    <th>Вх. стоимость:</th>
+                    <td>{{ output.transportation_out.first.incoming_cost|default_if_none:'Не указана' }} | {{ output.transportation_out.first.get_incoming_pay_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Их. стоимость:</th>
+                    <td>{{ output.transportation_out.first.outdoing_cost|default_if_none:'Не указана' }} | {{ output.get_outdoing_pay_type_display }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th><h6>Комментарий</h6></th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="comment">{{ output.comment }}</div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" name="edit" class="btn btn-warning" href="{% url 'applications_edit' output.id %}">Изменить</button>
+    {% if output.status != 'Просрочена' and output.status != 'Отказ' %}
+    <button type="button" name="cancel" class="btn btn-danger" href="{% url 'applications_edit' output.id %}">Отменить</button>
+    {% endif %}
+</div>
+
+<script src="{% static 'mainapp/javascript/application.js' %}"></script>

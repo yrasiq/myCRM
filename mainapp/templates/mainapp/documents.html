@@ -1,0 +1,195 @@
+{% extends 'index.html' %}
+    {% load static %}
+    {% load mainapptemplatetags %}
+    {% block title %}
+    Документы
+    {% endblock %}
+    {% block css %}
+        <link href="{% static 'mainapp/css/documents.css' %}" rel="stylesheet">
+        <style>
+            aside svg#documents{
+                fill: #dee2e6;
+            }
+        </style>
+    {% endblock %}
+    {% block contantname %}
+    Документы
+    {% endblock %}
+    {% block main %}
+    <div class="blank">
+        <div class="select-document">
+            <select class="header-select">
+                <option selected value="">Документ</option>
+                <option value="raport">Рапорт</option>
+                <option value="document">Закрывающий</option>
+            </select>
+            <select class="number-select" style="display: none;">
+                <option selected value="">Добавить</option>
+                {% for i in doc %}
+                <option value="{{ i.0 }}">{{ i.1 }}</option>
+                {% endfor %}
+            </select>
+            <div class="document-form-wrapper">
+                <p>Выберите вид документа</p>
+            </div>
+        </div>
+        <div class="workshifts-list">
+            <div class="workshifts-header">
+                <h5>Смены</h5>
+                <ul class="aggregate">
+                    <li>Часов: <span class="aggregate-hours">0</span></li>
+                    <li>Вх. сумма: <span class="aggregate-icost">0</span></li>
+                    <li>Их. сумма: <span class="aggregate-ocost">0</span></li>
+                </ul>
+                {% include 'mainapp/paginator.html' %}
+            </div>
+            <div class="head-shadow"></div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <th>№ Зак.</th>
+                        <th>Дата</th>
+                        <th>Час</th>
+                        <th>Доп</th>
+                        <th>Вх. ст</th>
+                        <th>Их. ст</th>
+                        <th>Рапорт</th>
+                        <th>Вх. акт</th>
+                        <th>Вх. сч-ф</th>
+                        <th>Их. акт</th>
+                        <th>Их. сч-ф</th>
+                    </thead>
+                    <tbody>
+                        {% for i in output %}
+                        {% if i|getclassname == 'WorkShift' %}
+                        <tr name="workshift" value="{{ i.pk }}">
+                            <td>{{ i.order }}</td>
+                            <td>{{ i.date }}</td>
+                            <td class="ws-hours"><input type="number" value="{{ i.hours }}" name="hours" action="{% url 'order_workshifts' i.id %}"></td>
+                            <td class="select-options">
+                                <select name="options" action="{% url 'order_workshifts' i.id %}">
+                                    <option {% if not i.options %}selected{% endif %} value="">---</option>
+                                    {% for name, info in i.order.options_info.items %}
+                                    <option {% if info.verbose_name == i.options %}selected{% endif %} value="{{ info.verbose_name }}">{{ info.verbose_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>{{ i.order.incoming_cost|add:i.get_option_inc_cost|to_decimal }}</td>
+                            <td>{{ i.order.outdoing_cost|add:i.get_option_out_cost|to_decimal }}</td>
+                            <td>{{ i.raport|default_if_none:'' }}</td>
+                            <td>
+                                {% if i.order.incoming_pay_type == 'НАЛ' %}
+                                    {{ i.order.incoming_pay_type }}
+                                {% else %}
+                                    {{ i.incoming_act|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.order.incoming_pay_type != 'НДС' %}
+                                    {{ i.order.incoming_pay_type }}
+                                {% else %}
+                                    {{ i.incoming_invoice|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.order.outdoing_pay_type == 'НАЛ' %}
+                                    {{ i.order.outdoing_pay_type }}
+                                {% else %}
+                                    {{ i.outdoing_act|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.order.outdoing_pay_type != 'НДС' %}
+                                    {{ i.order.outdoing_pay_type }}
+                                {% else %}
+                                    {{ i.outdoing_invoice|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% elif i|getclassname == 'TransportationTo' %}
+                        <tr name="transportation_to" value="{{ i.pk }}">
+                            <td>{{ i.content_object }}</td>
+                            <td>{{ i.content_object.start_date }}</td>
+                            <td>---</td>
+                            <td>Дос</td>
+                            <td>{{ i.incoming_cost|default_if_none:'' }}</td>
+                            <td>{{ i.outdoing_cost|default_if_none:'' }}</td>
+                            <td>{{ i.raport|default_if_none:'' }}</td>
+                            <td>
+                                {% if i.incoming_pay_type == 'НАЛ' %}
+                                    {{ i.incoming_pay_type }}
+                                {% else %}
+                                    {{ i.incoming_act|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.incoming_pay_type != 'НДС' %}
+                                    {{ i.incoming_pay_type }}
+                                {% else %}
+                                    {{ i.incoming_invoice|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.content_object.outdoing_pay_type == 'НАЛ' %}
+                                    {{ i.content_object.outdoing_pay_type }}
+                                {% else %}
+                                    {{ i.outdoing_act|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.content_object.outdoing_pay_type != 'НДС' %}
+                                    {{ i.content_object.outdoing_pay_type }}
+                                {% else %}
+                                    {{ i.outdoing_invoice|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% elif i|getclassname == 'TransportationOut' %}
+                        <tr name="transportation_out" value="{{ i.pk }}">
+                            <td>{{ i.content_object }}</td>
+                            <td>{{ i.content_object.end_date }}</td>
+                            <td>---</td>
+                            <td>Выв</td>
+                            <td>{{ i.incoming_cost|default_if_none:'' }}</td>
+                            <td>{{ i.outdoing_cost|default_if_none:'' }}</td>
+                            <td>{{ i.raport|default_if_none:'' }}</td>
+                            <td>
+                                {% if i.incoming_pay_type == 'НАЛ' %}
+                                    {{ i.incoming_pay_type }}
+                                {% else %}
+                                    {{ i.incoming_act|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.incoming_pay_type != 'НДС' %}
+                                    {{ i.incoming_pay_type }}
+                                {% else %}
+                                    {{ i.incoming_invoice|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.content_object.outdoing_pay_type == 'НАЛ' %}
+                                    {{ i.content_object.outdoing_pay_type }}
+                                {% else %}
+                                    {{ i.outdoing_act|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if i.content_object.outdoing_pay_type != 'НДС' %}
+                                    {{ i.content_object.outdoing_pay_type }}
+                                {% else %}
+                                    {{ i.outdoing_invoice|default_if_none:'' }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block js %}
+    <script src="{% static 'mainapp/javascript/documents.js' %}"></script>
+    {% endblock %}
