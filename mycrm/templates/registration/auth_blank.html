@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet" >
+    <style>
+        body{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: #e9ecef;
+        }
+        .form-wrapper{
+          height: max-content;
+          align-self: center;
+          margin: auto;
+          width: min-content;
+          min-width: min-content;
+          padding: 2rem;
+          box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+          border-radius: 5px;
+          background-color: white;
+        }
+        input[type="submit"]{
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"]{
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding-left: .5rem;
+            padding-right: .5rem;
+            height: 2rem;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus{
+            transition-duration: 200ms;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(50, 150, 255, 0.5);
+            border: 1px solid rgb(50, 150, 255);
+        }
+        ul.errorlist{
+            list-style-type: none;
+            color: #ba2121;
+            margin-bottom: 0;
+            padding: 0;
+        }
+        ul.errorlist.nonfield{
+            border: 1px solid #ba2121;
+            border-radius: 5px;
+            padding: .5rem;
+        }
+        label{
+            white-space: nowrap;
+            padding-right: 1rem;
+        }
+        td{
+            height: 2.5rem;
+        }
+        .form-wrapper > *:not(:last-child){
+            margin-bottom: 1rem;
+        }
+        table{
+            margin-bottom: 1rem;
+        }
+    </style>
+    {% block styles %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="form-wrapper">
+    {% block content %}
+    {% endblock %}
+    </div>
+  </body>
+</html>

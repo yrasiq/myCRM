@@ -1,0 +1,74 @@
+.modal-footer{
+    justify-content: flex-start;
+}
+.modal-body{
+    display: flex;
+    overflow-x: auto;
+}
+.modal-footer button{
+    width: 7rem;
+}
+.modal-content th{
+    font-weight: normal;
+}
+.modal-header td{
+    text-align: right;
+}
+.modal-header th{
+    padding-right: 1rem;
+}
+.modal-header h5{
+    margin-bottom: 0;
+}
+.modal-body tr{
+    height: 2rem;
+}
+.modal-dialog{
+    max-width: 90%;
+    width: max-content;
+}
+.modal .date-picker-wrapper{
+    padding: .5rem;
+}
+.modal form{
+    display: contents;
+}
+.modal form th{
+    padding-right: 2rem;
+}
+.modal form input{
+    height: 2rem;
+}
+.modal form tr{
+    height: 2.5rem;
+}
+.modal form textarea{
+    margin-top: .5rem;
+}
+.modal form textarea,
+.modal form input{
+    width: 21rem;
+}
+.modal form label:not([class="required"]){
+    color: #ced4da;
+}
+.modal .errorlist{
+    color: #dc3545;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    max-width: 20rem;
+}
+.modal-footer div.answer{
+    color: #dc3545;
+    width: 14rem;
+    margin-right: auto;
+}
+.modal form input[type="checkbox"]{
+    width: 1rem;
+    height: 1rem;
+}
+.modal-body form .select2-container{
+    width: unset !important;
+}
+

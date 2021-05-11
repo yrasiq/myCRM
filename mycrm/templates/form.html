@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h5>{{ header }}</h5>
+    {% if output.status %}
+    <table>
+        <tbody>
+            <tr>
+                <th>Статус:</th>
+                <td>{{ output.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+<div class="modal-body">
+    <form method="post" action="{{ href }}" id={{ id }}>
+    {% csrf_token %}
+    <table>
+        <tbody>
+           {{ form }}
+        </tbody>
+    </table>
+    </form>
+    {% if id == 'new_app_form' or id == 'update_app_form' or id == 'update_order_form' %}
+        {% include 'mainapp/transportation_form.html' %}
+    {% endif %}
+</div>
+<div class="modal-footer">
+    {% block modal-footer %}
+    <button type="submit" class="btn btn-primary" form="{{ id }}">Сохранить</button>
+    {% endblock %}
+</div>

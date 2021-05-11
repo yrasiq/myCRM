@@ -1,0 +1,23 @@
+ul.pagination a.active-page{
+    background-color: #0d6efd;
+    color: white;
+}
+ul.pagination li{
+    min-width: 1rem;
+}
+nav.itertable{
+    margin-top: .5rem;
+}
+ul.list-itertable{
+    margin-bottom: 0;
+}
+ul.list-itertable a{
+    padding: 0;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    color: #6c757d;
+    transition-duration: 200ms;
+}
+ul.list-itertable a:hover{
+    color: #3d8bfd
+}

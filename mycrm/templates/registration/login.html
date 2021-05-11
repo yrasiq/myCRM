@@ -1,0 +1,28 @@
+{% extends 'registration/auth_blank.html' %}
+{% block styles %}
+<style>
+    a{
+      float: right;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h5>Авторизация</h5>
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <table>
+    <tr>
+      <td>{{ form.username.label_tag }}</td>
+      <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.password.label_tag }}</td>
+      <td>{{ form.password }}</td>
+    </tr>
+  </table>
+  <input type="submit" class="btn btn-primary" value="Войти" />
+  <input type="hidden" name="next" value="{{ next }}" />
+  <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+</form>
+{{ form.non_field_errors }}
+{% endblock %}

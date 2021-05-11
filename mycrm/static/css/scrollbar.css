@@ -1,0 +1,55 @@
+::-webkit-scrollbar-thumb{
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color:#ced4da;
+}
+::-webkit-scrollbar{
+    width: 20px;
+    height: 20px;
+    background-color: #f8f9fa;
+}
+::-webkit-scrollbar-corner{
+    background-color: #f8f9fa;
+}
+::-webkit-scrollbar-thumb:vertical{
+    border-right: 5px solid #f8f9fa;
+    border-left: 5px solid #f8f9fa;
+}
+::-webkit-scrollbar-thumb:horizontal{
+    border-top: 5px solid #f8f9fa;
+    border-bottom: 5px solid #f8f9fa;
+}
+
+ul.filter-list::-webkit-scrollbar:vertical{
+    width: 5px;
+    background-color: white;
+}
+ul.filter-list::-webkit-scrollbar-thumb:vertical{
+    border: 0;
+}
+
+aside ul.machines-dropdown > div::-webkit-scrollbar:vertical{
+    width: 10px;
+    background-color: white;
+}
+aside ul.machines-dropdown > div::-webkit-scrollbar-thumb:vertical{
+    border-radius: 0;
+    border-left: 5px solid white;
+    border-right: 0;
+    background-clip: content-box;
+}
+
+.modal *::-webkit-scrollbar{
+    background-color: white;
+}
+.modal *::-webkit-scrollbar-thumb:horizontal{
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+}
+.modal *::-webkit-scrollbar-thumb:vertical{
+    border-right: 5px solid white;
+    border-left: 5px solid white;
+}
+.modal *::-webkit-scrollbar-corner{
+    background-color: white;
+}

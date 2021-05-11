@@ -1,0 +1,14 @@
+main{
+    position: fixed;
+    width: calc(100% - 56px);
+    height: calc(100% - 46px);
+    left: 56px;
+    top: 46px;
+    padding-left: 1%;
+    padding-top: 1%;
+    background-color: #f8f9fa;
+    z-index: -1;
+}
+main .btn.focus, .btn:focus {
+    box-shadow: none!important;
+}
