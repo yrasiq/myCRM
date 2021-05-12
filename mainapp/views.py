@@ -77,6 +77,8 @@ class Workshifts(ListView):
             value = getattr(obj, filter_list)
             if isinstance(value, ContentType):
                 value = value.name
+            elif filter_list == 'machine_type' and self.__class__ == Workshifts:
+                value = ContentType.objects.get_for_id(value).name
             elif value is None:
                 value = ''
             values_list.append(str(localize(value)))
@@ -122,8 +124,13 @@ class Workshifts(ListView):
             filters_copy = filters.copy()
             for i in filters:
 
-                if self.queryset.model != FullWorkShift and i == 'machine_type':
-                    filters_copy["%s__model__in" % (i)] = [
+                if i == 'machine_type':
+                    if self.queryset.model == FullWorkShift:
+                        i_filter = 'order__' + i
+                    else:
+                        i_filter = i
+
+                    filters_copy["%s__model__in" % (i_filter)] = [
                         j.__name__.lower()
                         for j in get_machine_types()
                         if j._meta.verbose_name in filters_copy[i]
@@ -156,8 +163,13 @@ class Workshifts(ListView):
             search_set = []
             for i in self.queryset.model.search_fields():
 
-                if self.queryset.model != FullWorkShift and i == 'machine_type':
-                    search_set.append(Q(**{"%s__model__in" % (i): [
+                if i == 'machine_type':
+                    if self.queryset.model == FullWorkShift:
+                        i_filter = 'order__' + i
+                    else:
+                        i_filter = i
+
+                    search_set.append(Q(**{"%s__model__in" % (i_filter): [
                         name.__name__.lower() for name in get_machine_types()
                         if search['search'].lower() in name._meta.verbose_name.lower()
                         ]}))
@@ -167,6 +179,9 @@ class Workshifts(ListView):
 
                 elif i in ('incoming_act', 'incoming_invoice', 'outdoing_act', 'outdoing_invoice'):
                     search_set.append(Q(**{"%s__number__icontains" % (i): search['search']}))
+
+                elif i == 'manager' and self.queryset.model != FullWorkShift:
+                    search_set.append(Q(**{"%s__username__icontains" % (i): search['search']}))
 
                 elif i == 'raport':
                     search_set.append(Q(**{"%s__id__icontains" % (i): search['search']}))
@@ -192,7 +207,7 @@ class Workshifts(ListView):
                     sort[0] = i
                     break
 
-            if self.queryset.model != FullWorkShift and sort[0] in ('machine_type', 'full_name'):
+            if sort[0] in ('machine_type', 'full_name'):
 
                 if sort[1] == "sort_down":
                     rev = False
@@ -200,7 +215,12 @@ class Workshifts(ListView):
                     rev = True
 
                 if sort[0] == 'machine_type':
-                    queryset = sorted(queryset, key=lambda name: name.machine_type.name, reverse=rev)
+
+                    if self.queryset.model == FullWorkShift:
+                        queryset = sorted(queryset, key=lambda name: name.order.machine_type.name, reverse=rev)
+                    else:
+                        queryset = sorted(queryset, key=lambda name: name.machine_type.name, reverse=rev)
+
                 elif sort[0] == 'full_name':
                     queryset = sorted(queryset, key=lambda name: name.full_name(), reverse=rev)
 
@@ -219,6 +239,7 @@ class Workshifts(ListView):
 
         self.kwargs[self.page_kwarg] = self.session['cache'][self.cache_name]['page']
         self.queryset = queryset
+
 
     def get_pagination_list(self, **kwargs):
 

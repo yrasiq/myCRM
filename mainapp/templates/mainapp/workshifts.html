@@ -128,7 +128,13 @@
                                 {% elif j == 'supplier' %}
                                     action="{% url 'partner' i.order.supplier.id %}"
                                 {% endif %}
-                                >{{ i|getattrvalue:j }}</td>
+                                >
+                                {% if j == 'machine_type' %}
+                                {{ i.order.machine_type.name }}
+                                {% else %}
+                                {{ i|getattrvalue:j }}
+                                {% endif %}
+                                </td>
                             {% endfor %}
                         </tr>
                     {% endfor %}

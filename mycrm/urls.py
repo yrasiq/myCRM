@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.db.utils import OperationalError
 
 
-urlpatterns = [
-    path('admin/machines/form/', include('machines.urls')),
-    path('admin/', admin.site.urls),
-    path('', include('mainapp.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-]
+# try/except for correct initial migration.
+try:
+    urlpatterns = [
+        path('admin/machines/form/', include('machines.urls')),
+        path('admin/', admin.site.urls),
+        path('', include('mainapp.urls')),
+        path('accounts/', include('django.contrib.auth.urls')),
+    ]
+except OperationalError as e:
+    urlpatterns = []
+    print(e)

@@ -1164,7 +1164,7 @@ class FullWorkShiftManager(models.Manager):
                 adres=F('order__adres'),
                 supplier=F('order__supplier__name'),
                 customer=F('order__customer__name'),
-                machine_type=V(Order.objects.get(id=F("id")).machine_type.name),
+                machine_type=F('order__machine_type'),
                 incoming_pay_type=F('order__incoming_pay_type'),
                 incoming_cost=F('order__incoming_cost'),
                 outdoing_pay_type=F('order__outdoing_pay_type'),
