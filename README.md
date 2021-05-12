@@ -10,7 +10,7 @@
 
 ### Дополнительные настройки
 
-В директории /mycrm (там где settings.py) создать файл ".env" и заполнить его по шаблону:
+В директории [/mycrm](mycrm/) создать файл ".env" и заполнить его по шаблону:
 
 ```
 SECRET_KEY=
@@ -21,7 +21,7 @@ CELERY_BROKER_URL=
 DEFAULT_DATABASE=
 ```
 
-Все названия этих переменных окружения соответствуют названиям констант в settings.py, а значения должны быть установленны согласно синтаксису django-environ https://django-environ.readthedocs.io/en/latest/.
+Все названия этих переменных окружения соответствуют названиям констант в [settings.py](mycrm/settings.py), а значения должны быть установленны согласно [синтаксису](https://django-environ.readthedocs.io/en/latest/) django-environ.
 Важно, что настройки базы данных записываются как dict.
 
 ### Frontend
@@ -29,8 +29,7 @@ DEFAULT_DATABASE=
 - Bootstrap 5
 - select2
 - jquery
-- jquery-date-range-picker
-    https://github.com/longbill/jquery-date-range-picker
+- [jquery-date-range-picker](https://github.com/longbill/jquery-date-range-picker)
 - moment.js
 - popper.js
 
@@ -44,4 +43,4 @@ DEFAULT_DATABASE=
     - dadata
     - transliterate
 
-    Подробнее в requirements.txt
+    Подробнее в [requirements.txt](requirements.txt)
