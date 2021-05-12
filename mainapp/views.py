@@ -1298,7 +1298,7 @@ class CreateApplication(MultiFormMixin, CreateView):
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
-            #Чтобы заявка не ушла в заказ до прикрепления доставок (костыль)
+
             start_date = form.instance.start_date
             form.instance.start_date = date.today() + timedelta(days=1)
 
