@@ -24,6 +24,8 @@ env = environ.Env(
     ),
     SECRET_KEY = (str, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+))'),
     DADATA_TOKEN = (str, 'a71ef114c4a2d060768e2ba1ff9161026f43b838')
+    DADATA_TOKEN = (str, 'a71ef114c4a2d060768e2ba1ff9161026f43b838'),
+    CELERY_BROKER_URL = (str, 'pyamqp://guest@localhost//')
 )
 environ.Env.read_env()
 
@@ -170,6 +172,6 @@ AUTH_USER_MODEL = 'mainapp.CustomUser'
 
 
 #Celery
-CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
+CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
