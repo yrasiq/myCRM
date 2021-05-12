@@ -2,11 +2,11 @@
 
 ### Установка
 
-По умолчанию проект настроен для запуска на локальном хосте в режиме отладки с базой данных SQLite3 и брокером сообщений RabbitMQ. Если необходимо изменить что-то из вышеперечисленного, или задать некоторые приватные данные, то необходимо сначала провести дополнительные настройки (см. Дополнительные настройки).
+По умолчанию проект настроен для запуска на локальном хосте в режиме отладки с базой данных SQLite3 и брокером сообщений RabbitMQ. Если необходимо изменить что-то из вышеперечисленного, или задать некоторые приватные данные, то необходимо сначала провести дополнительные настройки (см. [Дополнительные настройки](#дополнительные-настройки)).
 
-1. Установить виртуальное окружение python согласно requrements.txt
+1. Установить виртуальное окружение python согласно [requrements.txt](requrements.txt)
 2. Провести начальную миграцию базы данных
-3. Установить и/или настроить (см. Дополнительные настройки) брокер сообщений для celery.
+3. Установить и/или настроить (см. [Дополнительные настройки](#дополнительные-настройки)) брокер сообщений для celery.
 
 ### Дополнительные настройки
 
@@ -26,21 +26,21 @@ DEFAULT_DATABASE=
 
 ### Frontend
 
-- Bootstrap 5
-- select2
-- jquery
+- [Bootstrap 5](https://getbootstrap.com/)
+- [select2](https://select2.org/)
+- [jquery](https://jquery.com/)
 - [jquery-date-range-picker](https://github.com/longbill/jquery-date-range-picker)
-- moment.js
-- popper.js
+- [moment.js](https://momentjs.com/)
+- [popper.js](https://popper.js.org/)
 
 ### Backend
 
 - python 3.9.5
-    - Djano
-    - Pillow
-    - celery
-    - django-environ
-    - dadata
-    - transliterate
+    - [Djano](https://www.djangoproject.com/)
+    - [Pillow](https://pillow.readthedocs.io/en/stable/)
+    - [celery](https://docs.celeryproject.org/en/stable/)
+    - [django-environ](https://django-environ.readthedocs.io/en/latest/)
+    - [dadata](https://dadata.ru/api/)
+    - [transliterate](https://pypi.org/project/transliterate/)
 
     Подробнее в [requirements.txt](requirements.txt)
