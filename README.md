@@ -6,9 +6,9 @@
 Если необходимо изменить что-то из вышеперечисленного, или задать некоторые приватные данные, то необходимо сначала провести
 дополнительные настройки (см. Дополнительные настройки).
 
-    1. Установить виртуальное окружение python согласно requrements.txt
-    2. Провести начальную миграцию базы данных
-    3. Установить и/или настроить (см. Дополнительные настройки) брокер сообщений для celery.
+1. Установить виртуальное окружение python согласно requrements.txt
+2. Провести начальную миграцию базы данных
+3. Установить и/или настроить (см. Дополнительные настройки) брокер сообщений для celery.
 
 ### Дополнительные настройки
 
@@ -24,27 +24,27 @@ DEFAULT_DATABASE=
 ```
 
 Все названия этих переменных окружения соответствуют названиям констант в settings.py, а значения должны быть установленны согласно
-синтаксису django-environ (https://django-environ.readthedocs.io/en/latest/).
+синтаксису django-environ https://django-environ.readthedocs.io/en/latest/.
 Важно, что настройки базы данных записываются как dict.
 
 ### Frontend
 
--Bootstrap 5
--select2
--jquery
--jquery-date-range-picker
+- Bootstrap 5
+- select2
+- jquery
+- jquery-date-range-picker
     https://github.com/longbill/jquery-date-range-picker
--moment.js
--popper.js
+- moment.js
+- popper.js
 
 ### Backend
 
--python 3.9.5
-    -Djano
-    -Pillow
-    -celery
-    -django-environ
-    -dadata
-    -transliterate
+- python 3.9.5
+    - Djano
+    - Pillow
+    - celery
+    - django-environ
+    - dadata
+    - transliterate
 
     Подробнее в requirements.txt
