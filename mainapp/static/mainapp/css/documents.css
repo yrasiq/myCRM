@@ -1,0 +1,307 @@
+.blank{
+    background-color: white;
+    width: 99%;
+    height: 100%;
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+select.header-select{
+    width: 11rem;
+}
+select.number-select{
+    width: 9rem;
+}
+select.header-select,
+select.number-select{
+    margin-bottom: .5rem;
+    border: none;
+    font-size: 120%;
+    font-weight: 500;
+    border-radius: 5px;
+    padding-left: .5rem;
+    height: 2rem;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+select.header-select:focus,
+select.number-select:focus{
+    border: none;
+    outline: none;
+    background-color: #e9ecef;
+}
+select.header-select:hover,
+select.number-select:hover{
+    background-color: #e9ecef;
+}
+.select-document > .select2-container{
+    display: inline-block;
+    height: 2rem;
+    border-radius: 5px;
+    margin-bottom: .25rem;
+}
+.select-document > .select2-container:hover,
+.select-document > .select2-container:focus,
+.select-document > .select2-container:hover *,
+.select-document > .select2-container:focus *{
+    background-color: #e9ecef;
+}
+.select-document > .select2-container .select2-selection{
+    border: None;
+    border-radius: 5px;
+    font-size: 120%;
+    font-weight: 500;
+}
+.select-document > .select2-container .select2-selection__rendered{
+    color: black;
+    border-radius: 5px;
+    height: 2rem;
+}
+.select2-dropdown{
+    border-top: 1px solid #aaa !important;
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    box-shadow: 0 0 .5rem rgb(0 0 0 / 50%);
+}
+.select-document{
+    width: 23rem;
+    min-width: 23rem;
+    padding: 1rem;
+}
+.workshifts-list{
+    padding: 1rem 0 1rem 1rem;
+    width: 100%;
+}
+.workshifts-list h5:first-child{
+    margin-top: .25rem;
+}
+.workshifts-list .table-wrap{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 95%;
+    width: 100%;
+    min-width: fit-content;
+}
+.workshifts-list .table-wrap::-webkit-scrollbar,
+.document-form-wrapper::-webkit-scrollbar{
+    background-color: white;
+}
+.workshifts-list .table-wrap::-webkit-scrollbar-thumb:vertical,
+.document-form-wrapper::-webkit-scrollbar-thumb:vertical{
+    border-right: 5px solid white;
+    border-left: 5px solid white;
+}
+.workshifts-list table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: right;
+    white-space: nowrap;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
+}
+.workshifts-list th{
+    position: sticky;
+    top: 0;
+    font-weight: normal;
+    color: #6c757d;
+    padding: .5rem;
+    background-color: white;
+}
+.workshifts-list td{
+    padding: 0 .5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+.workshifts-list .ws-hours{
+    padding-right: 0 !important;
+}
+.workshifts-list tbody tr{
+    height: 2rem;
+}
+.workshifts-list select{
+    text-overflow: ellipsis;
+    width: 8rem;
+    border: none;
+    background-color: initial;
+    border-radius: 5px;
+    height: 2rem;
+    padding-left: .5rem;
+}
+.workshifts-list .select-options{
+    padding: 0;
+}
+.workshifts-list tbody input{
+    width: 4rem;
+    border: none;
+    text-align: right;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    background-color: initial;
+    height: 2rem;
+    border-radius: 5px;
+}
+.workshifts-list tbody input:hover,
+.workshifts-list tbody input:focus,
+.workshifts-list select:hover,
+.workshifts-list select:focus{
+    background-color: #ced4da;
+}
+.workshifts-list tbody input:focus,
+.workshifts-list select:focus{
+    outline: none;
+}
+.workshifts-list tbody input::-webkit-inner-spin-button,
+.workshifts-list tbody input::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+.workshifts-list tbody input{
+    -moz-appearance: textfield;
+}
+.workshifts-list tbody input:hover,
+.workshifts-list tbody input:focus{
+    -moz-appearance: number-input;
+}
+.workshifts-list tbody tr td:nth-child(3){
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.workshifts-header{
+    display: flex;
+    margin-bottom: .5rem;
+    padding-right: 20px;
+}
+.head-shadow{
+    position: sticky;
+    height: 4px;
+    top: 6rem;
+    margin-right: 50px;
+    box-shadow: 1rem 0rem 1rem rgb(0 0 0 / 50%);
+}
+.workshifts-list tbody tr:hover{
+    background-color: #e9ecef;
+}
+.aggregate{
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    white-space: nowrap;
+}
+.aggregate li{
+    margin-left: 1rem;
+}
+.aggregate span{
+    display: inline-block;
+    width: 4rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: right;
+}
+.workshift-selected{
+    background-color: #e9ecef;
+}
+.workshifts-list th:first-child,
+.workshifts-list td:first-child{
+    width: 4rem;
+}
+.workshifts-list th:nth-child(2),
+.workshifts-list td:nth-child(2){
+    width: 7rem;
+}
+.workshifts-list th:nth-child(3),
+.workshifts-list td:nth-child(3){
+    width: 2.5rem;
+}
+.workshifts-list th:nth-child(4),
+.workshifts-list td:nth-child(4){
+    width: 6rem;
+}
+.workshifts-list th:nth-child(5),
+.workshifts-list td:nth-child(5){
+    width: 6rem;
+}
+.workshifts-list th:nth-child(6),
+.workshifts-list td:nth-child(6){
+    width: 2.5rem;
+}
+.workshifts-list th:nth-child(n+7),
+.workshifts-list td:nth-child(n+7){
+    width: calc(25% - 5rem);
+}
+.document-form-wrapper{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 95%;
+}
+.document-form-wrapper th{
+    font-weight: normal;
+    padding-right: 1rem;
+    padding-top: .75rem;
+    vertical-align: top;
+    white-space: nowrap;
+    height: 3rem;
+}
+.document-form-wrapper td{
+    height: 3rem;
+}
+.document-form-wrapper input,
+.document-form-wrapper select{
+    width: 7.5rem;
+    float: right;
+    height: 2rem;
+    width: 100%;
+}
+.document-form-wrapper input[type="file"]{
+    height: 3.5rem;
+    white-space: normal;
+    margin-top: .5rem;
+}
+.document-form-wrapper td:last-child a{
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.document-form-wrapper input[type="file"]:focus{
+    border: none;
+    outline: none;
+}
+.document-form-wrapper select{
+    padding-top: .15rem;
+}
+.document-form-wrapper table{
+    margin-bottom: 1rem;
+}
+.document-form-wrapper .errorlist{
+    color: #dc3545;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.document-form-wrapper button{
+    width: 7rem;
+    margin-right: 1rem;
+}
+.document-form-wrapper button.delete-button{
+    display: none;
+}
+.answer{
+    display: none;
+}
+.answer-text{
+    color: #dc3545;
+    margin-top: 1rem;
+}
+nav.itertable{
+    margin-left: auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+.date-picker-wrapper{
+    padding: .5rem;
+}

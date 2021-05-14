@@ -1,0 +1,66 @@
+.modal-header p{
+    margin-bottom: 0;
+    margin-left: 2rem;
+    color: #adb5bd;
+}
+.user-photo {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 5px;
+    font-size: 5rem;
+    text-align: center;
+    background-color: #dee2e6;
+    color: white;
+    line-height: 1.65;
+    flex-shrink: 0;
+}
+.user-photo img{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+.info{
+    display: flex;
+}
+.info table,
+.table-statistic{
+    margin-left: 3rem;
+}
+.info th,
+.table-statistic th{
+    padding-right: 2rem;
+}
+.info td,
+.table-statistic td{
+    text-align: right;
+}
+.modal-body{
+    flex-direction: column;
+}
+.statistic{
+    display: flex;
+    margin-top: 3rem;
+}
+.st-date-range{
+    width: 15rem;
+}
+.st-date-range button,
+.st-date-range input{
+    width: 7rem;
+    float: right;
+}
+.st-date-range input{
+    height: 2rem;
+}
+.st-date-range button[type="submit"],
+.st-date-range input:first-child{
+    margin-right: 1rem;
+    float: left !important;
+}
+.month1{
+    width: 100% !important;
+}
+.st-date-range .date-picker-wrapper{
+    margin-top: 1rem;
+}

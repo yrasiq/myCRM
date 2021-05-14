@@ -1,0 +1,62 @@
+th.workshifts:nth-child(1){
+    width: 5%;
+}
+th.workshifts:nth-child(2){
+    width: 7.5%;
+}
+th.workshifts:nth-child(3){
+    width: 5%;
+}
+th.workshifts:nth-child(4){
+    width: 5%;
+}
+th.workshifts:nth-child(5){
+    width: 7.5%;
+}
+th.workshifts:nth-child(6){
+    width: 7.5%;
+}
+th.workshifts:nth-child(7){
+    width: 7.5%;
+}
+th.workshifts:nth-child(8){
+    width: 5%;
+}
+th.workshifts:nth-child(9){
+    width: 5%;
+}
+th.workshifts:nth-child(10){
+    width: 5%;
+}
+th.workshifts:nth-child(11){
+    width: 5%;
+}
+th.workshifts:nth-child(12){
+    width: 5%;
+}
+th.workshifts:nth-child(13){
+    width: 5%;
+}
+th.workshifts:nth-child(14){
+    width: 5%;
+}
+th.workshifts:nth-child(15){
+    width: 5%;
+}
+th.workshifts:nth-child(16){
+    width: 5%;
+}
+th.workshifts:nth-child(17){
+    width: 5%;
+}
+th.workshifts:nth-child(18){
+    width: 5%;
+}
+
+
+tr.workshifts td:first-child:hover,
+tr.workshifts td:nth-child(3):hover,
+tr.workshifts td:nth-child(5):hover,
+tr.workshifts td:nth-child(6):hover{
+    background-color: #e9ecef;
+}

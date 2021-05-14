@@ -1,0 +1,13 @@
+th.workshifts:nth-child(n+4){
+    width: 7.5%;
+}
+td.workshifts:nth-child(n+4){
+    text-align: center;
+}
+table.workshifts th.workshifts:nth-child(n+4) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.workshifts tbody td:first-child:hover{
+    background-color: #e9ecef;
+}

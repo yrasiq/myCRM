@@ -1,0 +1,565 @@
+div.head{
+    min-height: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 20px);
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: .5rem;
+}
+input.search{
+    padding: 0;
+    padding-left: .5rem;
+    width: 10rem;
+    min-width: 5rem;
+    height: 1.5rem;
+    margin-top: .5rem;
+}
+div.table-wrapper{
+    overflow: scroll;
+    height: calc(100% - 46px);
+    background-color: white;
+}
+div.head-shadow{
+    width: calc(98% - 40px);
+    height: 5px;
+    position: absolute;
+    margin-top: 30px;
+    box-shadow: 1rem 0rem 1rem rgba(0,0,0,0.5);
+}
+div.thead-background{
+    height: 15px;
+    position: absolute;
+    width: calc(99% - 25px);
+    background-color: white;
+}
+table.workshifts{
+    table-layout: fixed;
+    white-space: nowrap;
+    font-size: .85rem;
+    min-width: 1000px;
+    -webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+tbody.workshifts input{
+    opacity: unset !important;
+}
+table.workshifts .inactive{
+    color: #6c757d;
+}
+table form .search{
+    font-size: .85rem !important;
+}
+td.workshifts{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+th.workshifts{
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 0px;
+    border: 0 !important;
+    height: 36px;
+    padding: 0;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+th.workshifts:hover{
+    transition-duration: 200ms;
+    background-color: #e9ecef;
+    color: #3d8bfd;
+}
+tr.workshifts:hover{
+    cursor: pointer;
+}
+th.workshifts > a{
+    display: block;
+    color: #6c757d;
+    font-weight: normal;
+    text-decoration: none;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+th.workshifts > a > div{
+    max-width: min-content;
+}
+th.workshifts:hover > a{
+    color: #3d8bfd !important;
+}
+th.workshifts:hover > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+th.workshifts .sort-arrow{
+    font-size: 30%;
+    height: .6rem;
+    line-height: .6rem;
+    text-align: center;
+}
+th.workshifts .th-text{
+    height: calc(100% - 1.2rem);
+    font-size: .85rem;
+    line-height: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+table.workshifts ul.filter-list{
+    padding: 0;
+    height: 8rem;
+    overflow-y: scroll;
+    width: 10rem;
+}
+table.workshifts ul.filter-list li{
+    overflow-x: hidden;
+    padding-left: .25rem;
+}
+th.workshifts ul.dropdown-menu{
+    padding: 0;
+    font-size: 100%;
+}
+table.workshifts a.dropdown-item div{
+    float: right;
+}
+table.workshifts form.form-filter a.multi_choose{
+    color: #3d8bfd;
+    text-decoration: none;
+}
+form.form-filter input[type="submit"]{
+    background-color: #6c757d;
+    border: 0;
+    width: 6rem;
+}
+form.date-range.form-filter li:first-child{
+    display: flex !important;
+}
+form.date-range.form-filter li:nth-child(2){
+    height: unset !important;
+}
+form.date-range.form-filter li:last-child{
+    display: flex;
+    height: unset !important;
+    padding-bottom: .5rem !important;
+    padding-top: .5rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+}
+form.date-range.form-filter input{
+    width: 6rem !important;
+}
+form.date-range.form-filter input.to{
+    margin-right: 0 !important;
+}
+form.date-range.form-filter input[type=submit]{
+    margin-right: .5rem !important;
+    background-color: #0d6efd !important;
+}
+form.date-range.form-filter input[type=button]{
+    background-color: #6c757d !important;
+    border: 0 !important;
+}
+table.workshifts li.filters{
+    display: block;
+    font-weight: normal;
+    padding-left: 1rem;
+    padding: 0.25rem 1rem;
+    border-top: 1px solid #dee2e6;
+}
+table.workshifts li.filters > ul:first-child{
+    padding: 0;
+}
+table.workshifts .form-filter > li:first-child{
+    display: block;
+}
+table.workshifts .form-filter > li:first-child li{
+    display: inline-block;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+table.workshifts .form-filter > li:first-child ul{
+    padding: 0;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+table.workshifts .form-filter > li:nth-child(2){
+    display: block;
+    height: 1.5rem;
+}
+table.workshifts .form-filter > li:nth-child(2) input{
+    width: 100%;
+}
+table.workshifts .form-filter > li:nth-child(3){
+    display: block;
+    margin-top: .5rem;
+    padding: .1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+table.workshifts .form-filter > li:nth-child(4){
+    display: block;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+div.head button{
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: .5rem;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+table.table-col1r td.workshifts:first-child{
+    text-align: right;
+}
+table.table-col1r th.workshifts:first-child > a > div{
+    margin-left: auto;
+}
+table.table-col1r th.workshifts:first-child .th-text{
+    text-align: right;
+}
+table.table-col1c td.workshifts:first-child{
+    text-align: center;
+}
+table.table-col1c th.workshifts:first-child > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col1c th.workshifts:first-child .th-text{
+    text-align: center;
+}
+table.table-col2r td.workshifts:nth-child(2){
+    text-align: right;
+}
+table.table-col2r th.workshifts:nth-child(2) > a > div{
+    margin-left: auto;
+}
+table.table-col2r th.workshifts:nth-child(2) .th-text{
+    text-align: right;
+}
+table.table-col2c td.workshifts:nth-child(2){
+    text-align: center;
+}
+table.table-col2c th.workshifts:nth-child(2) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col2c th.workshifts:nth-child(2) .th-text{
+    text-align: center;
+}
+table.table-col3r td.workshifts:nth-child(3){
+    text-align: right;
+}
+table.table-col3r th.workshifts:nth-child(3) > a > div{
+    margin-left: auto;
+}
+table.table-col3r th.workshifts:nth-child(3) .th-text{
+    text-align: right;
+}
+table.table-col3c td.workshifts:nth-child(3){
+    text-align: center;
+}
+table.table-col3c th.workshifts:nth-child(3) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col3c th.workshifts:nth-child(3) .th-text{
+    text-align: center;
+}
+table.table-col4r td.workshifts:nth-child(4){
+    text-align: right;
+}
+table.table-col4r th.workshifts:nth-child(4)  > a > div{
+    margin-left: auto;
+}
+table.table-col4r th.workshifts:nth-child(4)  .th-text{
+    text-align: right;
+}
+table.table-col4c td.workshifts:nth-child(4){
+    text-align: center;
+}
+table.table-col4c th.workshifts:nth-child(4) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col4c th.workshifts:nth-child(4)  .th-text{
+    text-align: center;
+}
+table.table-col5r td.workshifts:nth-child(5){
+    text-align: right;
+}
+table.table-col5r th.workshifts:nth-child(5) > a > div{
+    margin-left: auto;
+}
+table.table-col5r th.workshifts:nth-child(5) .th-text{
+    text-align: right;
+}
+table.table-col5c td.workshifts:nth-child(5){
+    text-align: center;
+}
+table.table-col5c th.workshifts:nth-child(5) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col5c th.workshifts:nth-child(5) .th-text{
+    text-align: center;
+}
+table.table-col6r td.workshifts:nth-child(6){
+    text-align: right;
+}
+table.table-col6r th.workshifts:nth-child(6) > a > div{
+    margin-left: auto;
+}
+table.table-col6r th.workshifts:nth-child(6) .th-text{
+    text-align: right;
+}
+table.table-col6c td.workshifts:nth-child(6){
+    text-align: center;
+}
+table.table-col6c th.workshifts:nth-child(6) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col6c th.workshifts:nth-child(6) .th-text{
+    text-align: center;
+}
+table.table-col7r td.workshifts:nth-child(7){
+    text-align: right;
+}
+table.table-col7r th.workshifts:nth-child(7) > a > div{
+    margin-left: auto;
+}
+table.table-col7r th.workshifts:nth-child(7) .th-text{
+    text-align: right;
+}
+table.table-col7c td.workshifts:nth-child(7){
+    text-align: center;
+}
+table.table-col7c th.workshifts:nth-child(7) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col7c th.workshifts:nth-child(7) .th-text{
+    text-align: center;
+}
+table.table-col8r td.workshifts:nth-child(8){
+    text-align: right;
+}
+table.table-col8r th.workshifts:nth-child(8) > a > div{
+    margin-left: auto;
+}
+table.table-col8r th.workshifts:nth-child(8) .th-text{
+    text-align: right;
+}
+table.table-col8c td.workshifts:nth-child(8){
+    text-align: center;
+}
+table.table-col8c th.workshifts:nth-child(8) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col8c th.workshifts:nth-child(8) .th-text{
+    text-align: center;
+}
+table.table-col9r td.workshifts:nth-child(9){
+    text-align: right;
+}
+table.table-col9r th.workshifts:nth-child(9) > a > div{
+    margin-left: auto;
+}
+table.table-col9r th.workshifts:nth-child(9) .th-text{
+    margin-left: right;
+}
+table.table-col9c td.workshifts:nth-child(9){
+    text-align: center;
+}
+table.table-col9c th.workshifts:nth-child(9) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col9c th.workshifts:nth-child(9) .th-text{
+    margin-left: center;
+}
+table.table-col10r td.workshifts:nth-child(10){
+    text-align: right;
+}
+table.table-col10r th.workshifts:nth-child(10) > a > div{
+    margin-left: auto;
+}
+table.table-col10r th.workshifts:nth-child(10) .th-text{
+    text-align: right;
+}
+table.table-col10c td.workshifts:nth-child(10){
+    text-align: center;
+}
+table.table-col10c th.workshifts:nth-child(10) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col10c th.workshifts:nth-child(10) .th-text{
+    text-align: center;
+}
+table.table-col11r td.workshifts:nth-child(11){
+    text-align: right;
+}
+table.table-col11r th.workshifts:nth-child(11) > a > div{
+    margin-left: auto;
+}
+table.table-col11r th.workshifts:nth-child(11) .th-text{
+    text-align: right;
+}
+table.table-col11c td.workshifts:nth-child(11){
+    text-align: center;
+}
+table.table-col11c th.workshifts:nth-child(11) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col11c th.workshifts:nth-child(11) .th-text{
+    text-align: center;
+}
+table.table-col12r td.workshifts:nth-child(12){
+    text-align: right;
+}
+table.table-col12r th.workshifts:nth-child(12) > a > div{
+    margin-left: auto;
+}
+table.table-col12r th.workshifts:nth-child(12) .th-text{
+    text-align: right;
+}
+table.table-col12c td.workshifts:nth-child(12){
+    text-align: center;
+}
+table.table-col12c th.workshifts:nth-child(12) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col12c th.workshifts:nth-child(12) .th-text{
+    text-align: center;
+}
+table.table-col13r td.workshifts:nth-child(13){
+    text-align: right;
+}
+table.table-col13r th.workshifts:nth-child(13) > a > div{
+    margin-left: auto;
+}
+table.table-col13r th.workshifts:nth-child(13) .th-text{
+    text-align: right;
+}
+table.table-col13c td.workshifts:nth-child(13){
+    text-align: center;
+}
+table.table-col13c th.workshifts:nth-child(13) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col13c th.workshifts:nth-child(13) .th-text{
+    text-align: center;
+}
+table.table-col14r td.workshifts:nth-child(14){
+    text-align: right;
+}
+table.table-col14r th.workshifts:nth-child(14) > a > div{
+    margin-left: auto;
+}
+table.table-col14r th.workshifts:nth-child(14) .th-text{
+    text-align: right;
+}
+table.table-col14c td.workshifts:nth-child(14){
+    text-align: center;
+}
+table.table-col14c th.workshifts:nth-child(14) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col14c th.workshifts:nth-child(14) .th-text{
+    text-align: center;
+}
+table.table-col15r td.workshifts:nth-child(15){
+    text-align: right;
+}
+table.table-col15r th.workshifts:nth-child(15) > a > div{
+    margin-left: auto;
+}
+table.table-col15r th.workshifts:nth-child(15) .th-text{
+    text-align: right;
+}
+table.table-col15c td.workshifts:nth-child(15){
+    text-align: center;
+}
+table.table-col15c th.workshifts:nth-child(15) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col15c th.workshifts:nth-child(15) .th-text{
+    text-align: center;
+}
+table.table-col16r td.workshifts:nth-child(16){
+    text-align: right;
+}
+table.table-col16r th.workshifts:nth-child(16) > a > div{
+    margin-left: auto;
+}
+table.table-col16r th.workshifts:nth-child(16) .th-text{
+    text-align: right;
+}
+table.table-col16c td.workshifts:nth-child(16){
+    text-align: center;
+}
+table.table-col16c th.workshifts:nth-child(16) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col16c th.workshifts:nth-child(16) .th-text{
+    text-align: center;
+}
+table.table-col17r td.workshifts:nth-child(17){
+    text-align: right;
+}
+table.table-col17r th.workshifts:nth-child(17) > a > div{
+    margin-left: auto;
+}
+table.table-col17r th.workshifts:nth-child(17) .th-text{
+    text-align: right;
+}
+table.table-col17c td.workshifts:nth-child(17){
+    text-align: center;
+}
+table.table-col17c th.workshifts:nth-child(17) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col17c th.workshifts:nth-child(17) .th-text{
+    text-align: center;
+}
+table.table-col18r td.workshifts:nth-child(18){
+    text-align: right;
+}
+table.table-col18r th.workshifts:nth-child(18) > a > div{
+    margin-left: auto;
+}
+table.table-col18r th.workshifts:nth-child(18) .th-text{
+    text-align: right;
+}
+table.table-col18c td.workshifts:nth-child(18){
+    text-align: center;
+}
+table.table-col18c th.workshifts:nth-child(18) > a > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-col18c th.workshifts:nth-child(18) .th-text{
+    text-align: center;
+}

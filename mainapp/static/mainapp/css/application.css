@@ -1,0 +1,22 @@
+.modal-body th{
+    width: 10rem;
+}
+.comment{
+    word-break: break-all;
+    border: solid 1px #adb5bd;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-top: 1rem;
+    color: #adb5bd;
+    min-height: 2rem;
+}
+.info{
+    width: 25rem;
+    min-width: 25rem;
+}
+.info h6{
+    margin-bottom: 0;
+}
+.modal-footer{
+    margin-top: 1rem;
+}

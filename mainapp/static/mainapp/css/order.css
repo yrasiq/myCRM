@@ -1,0 +1,116 @@
+.info, .order-workshifts{
+    overflow-y: auto;
+    margin-right: 1rem;
+}
+.modal-body table{
+    margin-bottom: 1rem;
+}
+.info{
+    width: 25rem;
+    min-width: 25rem;
+}
+.info th{
+    width: 10rem;
+}
+.info h6{
+    margin-bottom: 0;
+}
+.order-workshifts{
+    width: max-content;
+    min-width: max-content;
+    overflow-x: hidden;
+}
+.order-workshifts h6{
+    position: sticky;
+    background-color: white;
+    height: 1.5rem;
+    margin: 0;
+    top: 0;
+}
+.order-workshifts table{
+    table-layout: fixed;
+    white-space: nowrap;
+    text-align: right;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.order-workshifts table th:nth-child(n+4),
+.order-workshifts table td:nth-child(n+4){
+    text-align: center;
+}
+.order-workshifts th:nth-child(3){
+    text-align: left;
+    padding-left: .75rem;
+}
+.order-workshifts td:nth-child(3):not(.select-options){
+    padding-left: .75rem;
+    text-align: left;
+}
+.select-options,
+.select-options select{
+    padding-right: 0 !important;
+}
+.order-workshifts th{
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    background-color: white;
+    top: 1.5rem;
+    border-bottom: solid 1px #adb5bd;
+    padding-right: .5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.order-workshifts td:not(.input-hours){
+    padding-right: .5rem;
+}
+.order-workshifts tbody tr:hover{
+    background-color: #e9ecef;
+}
+.order-workshifts input:not([type="checkbox"]){
+    width: 4rem;
+    border: none;
+    text-align: right;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    background-color: initial;
+    height: 2rem;
+    border-radius: 5px;
+}
+.order-workshifts input[type="checkbox"]{
+    opacity: unset !important;
+}
+.order-workshifts select{
+    text-overflow: ellipsis;
+    width: 8rem;
+    border: none;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    background-color: initial;
+    height: 2rem;
+    border-radius: 5px;
+}
+.order-workshifts input:not([type="checkbox"]):hover,
+.order-workshifts input:not([type="checkbox"]):focus,
+.order-workshifts select:hover,
+.order-workshifts select:focus{
+    background-color: #ced4da;
+}
+.order-workshifts input:not([type="checkbox"]):focus,
+.order-workshifts select:focus{
+    outline: none;
+}
+.order-workshifts input[type="number"]::-webkit-inner-spin-button,
+.order-workshifts input[type="number"]::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+.order-workshifts input[type="number"]{
+    -moz-appearance: textfield;
+}
+.order-workshifts input[type="number"]:hover,
+.order-workshifts input[type="number"]:focus{
+    -moz-appearance: number-input;
+}

@@ -1,0 +1,109 @@
+.modal-body table{
+    margin-bottom: 1rem;
+    word-break: break-all;
+}
+.upper-wrap{
+    display: flex;
+}
+.upper-wrap,
+.partner-contacts{
+    height: 50%;
+}
+.info,
+.partner-orders,
+.partner-machines,
+.partner-contacts{
+    overflow-y: auto;
+    margin-right: 1rem;
+    overflow-x: hidden;
+}
+.info{
+    width: 20rem;
+    min-width: 20rem;
+}
+.info table *{
+    vertical-align: top;
+}
+.info th{
+    width: 10rem;
+}
+.partner-tables{
+    min-width: 50rem;
+}
+.partner-tables th{
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    background-color: white;
+    top: 1.5rem;
+    border-bottom: solid 1px #adb5bd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: normal;
+    white-space: nowrap;
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+.partner-tables td{
+    padding-right: .5rem;
+    padding-left: .5rem;
+    vertical-align: top;
+}
+.partner-tables h6{
+    position: sticky;
+    background-color: white;
+    height: 1.5rem;
+    margin: 0;
+    top: 0;
+}
+.partner-tables table{
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+.partner-tables tbody tr:hover{
+    background-color: #e9ecef;
+}
+.partner-orders{
+    width: calc(100% - 10rem);
+}
+.partner-orders th:nth-child(5),
+.partner-orders td:nth-child(5){
+    width: 30%;
+    text-align: right;
+}
+.partner-machines{
+    width: 10rem;
+}
+.partner-machines th:nth-child(2),
+.partner-machines td:nth-child(2){
+    text-align: right;
+}
+.partner-entites input{
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    padding-left: .5rem;
+}
+.partner-entites input:focus{
+    outline: none;
+}
+.partner-entites input:focus,
+.partner-entites input:hover{
+    background-color: #e9ecef;
+}
+.partner-entites th{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.partner-entites td{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-right: .5rem;
+}
+.entity-error{
+    color: #dc3545;
+}
