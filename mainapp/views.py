@@ -74,18 +74,13 @@ class Workshifts(ListView):
         values_list = []
 
         for obj in self.queryset:
+            value = getattr(obj, filter_list)
             if isinstance(value, ContentType):
                 value = value.name
             elif filter_list == 'machine_type' and self.__class__ == Workshifts:
                 value = ContentType.objects.get_for_id(value).name
-            elif filter_list in (
-                'raport', 'incoming_act', 'outdoing_act', 'incoming_invoice', 'outdoing_invoice'
-                ) and self.__class__ == Workshifts:
-                value = getattr(obj, filter_list + '_id')
             elif value is None:
                 value = ''
-            else:
-                value = getattr(obj, filter_list)
             values_list.append(str(localize(value)))
 
         values_list = sorted(list(set(values_list)))
