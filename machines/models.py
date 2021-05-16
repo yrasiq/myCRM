@@ -269,11 +269,11 @@ class UpdateModel(CRUDModel):
 
 class Ekskavatorpogruzchikdynamic(Machine):
 
+    vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
     gidromolotdynamic = BooleanField(verbose_name="Гидромолот", default=None, null=True)
     plankovshdynamic = BooleanField(verbose_name="План. ковш", default=None, null=True)
     uzkijkovshdynamic = BooleanField(verbose_name="Узкий ковш", default=None, null=True)
     vilydynamic = BooleanField(verbose_name="Вилы", default=None, null=True)
-    ravnokolesnyjdynamic = BooleanField(verbose_name="Равно-колесный", default=None, null=True)
 
     class Meta:
         verbose_name = "ЭП"
@@ -284,7 +284,6 @@ class Gusenichnyjekskavatordynamic(Machine):
 
     vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
     shirinagusenitsdynamic = PositiveIntegerField(verbose_name="Ширина гусениц", blank=True, null=True)
-    dlinnastrelydynamic = PositiveIntegerField(verbose_name="Длинна стрелы", blank=True, null=True)
     gidromolotdynamic = BooleanField(verbose_name="Гидромолот", default=None, null=True)
     plankovshdynamic = BooleanField(verbose_name="План. ковш", default=None, null=True)
     uzkijkovshdynamic = BooleanField(verbose_name="Узкий ковш", default=None, null=True)
@@ -297,9 +296,6 @@ class Gusenichnyjekskavatordynamic(Machine):
 class Shalandadynamic(Machine):
 
     dlinnadynamic = PositiveIntegerField(verbose_name="Длинна", blank=True, null=True)
-    gruzopodemnostdynamic = PositiveIntegerField(verbose_name="Грузоподъемность", blank=True, null=True)
-    konikidynamic = BooleanField(verbose_name="Коники", default=None, null=True)
-    vezdehoddynamic = BooleanField(verbose_name="Вездеход", default=None, null=True)
 
     class Meta:
         verbose_name = "АБ"
@@ -308,12 +304,6 @@ class Shalandadynamic(Machine):
 
 class Minipogruzchikdynamic(Machine):
 
-    vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
-    gruzopodemnostdynamic = PositiveIntegerField(verbose_name="Грузоподъемность", blank=True, null=True)
-    gidromolotdynamic = BooleanField(verbose_name="Гидромолот", default=None, null=True)
-    vilydynamic = BooleanField(verbose_name="Вилы", default=None, null=True)
-    schetkadynamic = BooleanField(verbose_name="Щетка", default=None, null=True)
-    gusenichnyjdynamic = BooleanField(verbose_name="Гусеничный", default=None, null=True)
 
     class Meta:
         verbose_name = "МП"
@@ -323,22 +313,9 @@ class Minipogruzchikdynamic(Machine):
 class Samosvaldynamic(Machine):
 
     vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
-    obemdynamic = PositiveIntegerField(verbose_name="Объем", blank=True, null=True)
-    gruzopodemnostdynamic = PositiveIntegerField(verbose_name="Грузоподъемность", blank=True, null=True)
+    dlinnadynamic = PositiveIntegerField(verbose_name="Длинна", blank=True, null=True)
     vezdehoddynamic = BooleanField(verbose_name="Вездеход", default=None, null=True)
 
     class Meta:
         verbose_name = "СС"
         verbose_name_plural = "СС"
-
-
-
-
-class Avtokrandynamic(Machine):
-
-    gruzopodemnostdynamic = PositiveIntegerField(verbose_name="Грузоподъемность", blank=True, null=True)
-    dlinnastrelydynamic = PositiveIntegerField(verbose_name="Длинна стрелы", blank=True, null=True)
-
-    class Meta:
-        verbose_name = "АК"
-        verbose_name_plural = "АК"
