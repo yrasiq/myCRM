@@ -74,6 +74,7 @@ class Workshifts(ListView):
         values_list = []
 
         for obj in self.queryset:
+            value = getattr(obj, filter_list)
             if isinstance(value, ContentType):
                 value = value.name
             elif filter_list == 'machine_type' and self.__class__ == Workshifts:
@@ -84,8 +85,7 @@ class Workshifts(ListView):
             #     value = getattr(obj, filter_list + '_id')
             elif value is None:
                 value = ''
-            else:
-                value = getattr(obj, filter_list)
+
             values_list.append(str(localize(value)))
 
         values_list = sorted(list(set(values_list)))
