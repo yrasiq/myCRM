@@ -31,6 +31,7 @@ media
 # Distribution / packaging
 .Python build/
 media/
+migrations/
 static/*.*
 develop-eggs/
 dist/
