@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.db.utils import OperationalError
+from django.db.utils import OperationalError, ProgrammingError
 
 
 # try/except for correct initial migration.
@@ -26,6 +26,6 @@ try:
         path('', include('mainapp.urls')),
         path('accounts/', include('django.contrib.auth.urls')),
     ]
-except OperationalError as e:
+except OperationalError or ProgrammingError as e:
     urlpatterns = []
     print(e)
