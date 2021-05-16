@@ -99,12 +99,8 @@ class CRUDModel:
 
     def str_to_classname(self, string):
         name = self.str_to_var(string).capitalize()
-        from .models import __dict__ as D
-        if D.get(name, None) is None:
-            self.classname = name
-            return name
-        else:
-            raise Exception(f'{name} уже существует')
+        self.classname = name
+        return name
 
     def class_name(self, name):
         return f'\n\nclass {name}({self.template.__name__}):\n\n'
@@ -165,6 +161,11 @@ class CreateModel(CRUDModel):
                 self.attrs[value] = 'bool'
             else:
                 raise Exception('Недопустимые параметры техники')
+
+        from .models import __dict__ as D
+        name = self.str_to_classname(self.name)
+        if D.get(name, None) is not None:
+            raise Exception(f'{name} уже существует')
 
         self.register_admin = register_admin
         self.get_class()
@@ -269,7 +270,6 @@ class UpdateModel(CRUDModel):
 
 class Ekskavatorpogruzchikdynamic(Machine):
 
-    vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
     gidromolotdynamic = BooleanField(verbose_name="Гидромолот", default=None, null=True)
     plankovshdynamic = BooleanField(verbose_name="План. ковш", default=None, null=True)
     uzkijkovshdynamic = BooleanField(verbose_name="Узкий ковш", default=None, null=True)
@@ -283,7 +283,8 @@ class Ekskavatorpogruzchikdynamic(Machine):
 class Gusenichnyjekskavatordynamic(Machine):
 
     vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
-    shirinagusenitsdynamic = PositiveIntegerField(verbose_name="Ширина гусениц", blank=True, null=True)
+    gusenitsydynamic = PositiveIntegerField(verbose_name="Гусеницы", blank=True, null=True)
+    streladynamic = PositiveIntegerField(verbose_name="Стрела", blank=True, null=True)
     gidromolotdynamic = BooleanField(verbose_name="Гидромолот", default=None, null=True)
     plankovshdynamic = BooleanField(verbose_name="План. ковш", default=None, null=True)
     uzkijkovshdynamic = BooleanField(verbose_name="Узкий ковш", default=None, null=True)
@@ -296,6 +297,7 @@ class Gusenichnyjekskavatordynamic(Machine):
 class Shalandadynamic(Machine):
 
     dlinnadynamic = PositiveIntegerField(verbose_name="Длинна", blank=True, null=True)
+    gpdynamic = PositiveIntegerField(verbose_name="Г/П", blank=True, null=True)
 
     class Meta:
         verbose_name = "АБ"
@@ -304,6 +306,12 @@ class Shalandadynamic(Machine):
 
 class Minipogruzchikdynamic(Machine):
 
+    vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
+    gpdynamic = PositiveIntegerField(verbose_name="Г/П", blank=True, null=True)
+    gidromolotdynamic = BooleanField(verbose_name="Гидромолот", default=None, null=True)
+    vilydynamic = BooleanField(verbose_name="Вилы", default=None, null=True)
+    schetkadynamic = BooleanField(verbose_name="Щетка", default=None, null=True)
+    gusenitsydynamic = BooleanField(verbose_name="Гусеницы", default=None, null=True)
 
     class Meta:
         verbose_name = "МП"
@@ -313,9 +321,32 @@ class Minipogruzchikdynamic(Machine):
 class Samosvaldynamic(Machine):
 
     vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
-    dlinnadynamic = PositiveIntegerField(verbose_name="Длинна", blank=True, null=True)
-    vezdehoddynamic = BooleanField(verbose_name="Вездеход", default=None, null=True)
+    gpdynamic = PositiveIntegerField(verbose_name="Г/П", blank=True, null=True)
+    obemdynamic = PositiveIntegerField(verbose_name="Объем", blank=True, null=True)
 
     class Meta:
         verbose_name = "СС"
         verbose_name_plural = "СС"
+
+
+
+
+class Avtokrandynamic(Machine):
+
+    gpdynamic = PositiveIntegerField(verbose_name="Г/П", blank=True, null=True)
+    streladynamic = PositiveIntegerField(verbose_name="Стрела", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "АК"
+        verbose_name_plural = "АК"
+
+
+class Frontalnyjpogruzchikdynamic(Machine):
+
+    vesdynamic = PositiveIntegerField(verbose_name="Вес", blank=True, null=True)
+    kovshdynamic = PositiveIntegerField(verbose_name="Ковш", blank=True, null=True)
+    vilydynamic = BooleanField(verbose_name="Вилы", default=None, null=True)
+
+    class Meta:
+        verbose_name = "ФП"
+        verbose_name_plural = "ФП"
