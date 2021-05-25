@@ -1315,6 +1315,8 @@ class CreateApplication(MultiFormMixin, CreateView):
                     self.object.save()
                     messages.success(request, self.get_success_message())
                     return redirect(self.success_url)
+                else:
+                    self.object.delete()
             except:
                 self.object.delete()
                 raise Exception
