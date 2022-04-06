@@ -42,4 +42,7 @@ def field_by_number(obj, number):
 
 @register.filter
 def to_decimal(num):
-    return round(Decimal(num), 2)
+    if num:
+        return round(Decimal(num), 2)
+    else:
+        return None

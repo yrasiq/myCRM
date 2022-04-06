@@ -72,7 +72,7 @@
                         {{ value.verbose_name }}:
                     </th>
                     <td>
-                        {{ value.incoming|to_decimal }} - {{ value.outdoing|to_decimal }}
+                        {{ value.incoming|to_decimal|default_if_none:'Не указана' }} - {{ value.outdoing|to_decimal|default_if_none:'Не указана' }}
                     </td>
                 </tr>
                 {% endfor %}

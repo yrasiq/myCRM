@@ -822,7 +822,7 @@ class Transportation(ChangeFieldsCleanMixin, models.Model):
             Q(app_label='mainapp', model='application')
             )
         )
-    object_id = models.PositiveSmallIntegerField(unique=True)
+    object_id = models.PositiveSmallIntegerField()
     content_object = GenericForeignKey()
     carrier = models.ForeignKey(
         Partner,
