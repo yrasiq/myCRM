@@ -74,6 +74,11 @@ DEFAULT_DATABASE=
 Все названия этих переменных окружения соответствуют названиям констант в [settings.py](mycrm/settings.py), а значения должны быть установленны согласно [синтаксису django-environ](https://django-environ.readthedocs.io/en/latest/).
 Важно, что настройки базы данных записываются как dict.
 
+Комманда для заболнения БД тестовыми данными (только для пустой БД).
+...
+python manage.py testdata
+...
+
 ### Frontend
 
 - [Bootstrap 5](https://getbootstrap.com/)
